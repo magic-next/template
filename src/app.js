@@ -4,8 +4,8 @@ const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
 const fetch = require('node-fetch');
 const Container = require('folkjs');
-
 const routerFactory = require('./router');
+
 const PORT = process.env.PORT || 3000;
 
 const container = Container();
@@ -24,9 +24,7 @@ app
   .use(router.routes())
   .use(router.allowedMethods());
 
-const createLogger = () => {
-  return { ...console, info: console.log };
-};
+const createLogger = () => ({ ...console, info: console.log });
 
 app.listen(PORT, () => {
   const log = createLogger({ isDev: true });
